@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+           id="cordova.plugin.Brightness"
+      version="0.1.0">
+    <name>Brightness</name>
+
+    <js-module src="www/brightness.js" name="Brightness">
+        <clobbers target="Brightness" />
+    </js-module>
+    
+    	<info>
+	This plugin gives you path of file, that's opened with your allpication
+	You should add type handling manually to the android manifest or info.plist
+	</info>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Brightness">
+                <param name="android-package" value="org.apache.cordova.plugin.Brightness.BrightnessPlugin"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+        </config-file>
+
+	<source-file src="src/android/BrightnessPlugin.java" target-dir="src/org/apache/cordova/plugin/Brightness" />
+      
+     </platform>
+     
+     <!-- ios -->
+     <platform name="ios">    
+         <config-file target="config.xml" parent="/*">
+             <feature name="Brightness">
+                 <param name="ios-package" value="Brightness" />
+             </feature>
+         </config-file>
+
+         <header-file src="src/ios/Brightness.h" />
+         <source-file src="src/ios/Brightness.m" />
+
+
+     </platform>
+          
+</plugin> 
