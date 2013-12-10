@@ -40,6 +40,7 @@
          <header-file src="src/ios/Brightness.h" />
          <source-file src="src/ios/Brightness.m" />
 
+	 <framework src="UIKit.framework" weak="true" />
 
      </platform>
           
