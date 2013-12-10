@@ -6,8 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.app.Activity;
+import android.view.WindowManager.LayoutParams;
 import android.view.WindowManager;
-import android.view.ViewGroup.LayoutParams;
 
 /**
  * @author Evgeniy Lukovsky
@@ -15,8 +15,21 @@ import android.view.ViewGroup.LayoutParams;
  */
 public class BrightnessPlugin extends CordovaPlugin {
 	public enum Action{
-		setBrightness;
+		setBrightness,
 		getBrightness
+	}
+	
+	private class SetTask implements Runnable{
+		private Activity target = null;
+		private LayoutParams lp = null;
+		@Override
+		public void run() {
+			target.getWindow().setAttributes(lp);
+		}
+		public void setParams(Activity act, LayoutParams params){
+			this.target = act;
+			this.lp = params;
+		}
 	}
 
 
@@ -32,7 +45,6 @@ public class BrightnessPlugin extends CordovaPlugin {
 		case setBrightness: result = true;
 			setBrightness(args, callbackContext);
 			break;
-		}
 		case getBrightness: result = true;
 			getBrightness(args, callbackContext);
 			break;
@@ -46,14 +58,15 @@ public class BrightnessPlugin extends CordovaPlugin {
 	 * @return
 	 */
 	private boolean setBrightness(JSONArray args, CallbackContext callbackContext) {
-		String filePath = null;
 		try {
 			Activity activity = cordova.getActivity();
 			WindowManager.LayoutParams layoutParams = activity.getWindow().getAttributes();
 			String value = args.getString(0);
 			double brightness = Double.parseDouble(value);
-			layoutParams.screenBrightness = brightness;
-			activity.getWindow().setAttributes(layoutParams);
+			layoutParams.screenBrightness = (float) brightness;
+			SetTask task = new SetTask();
+			task.setParams(activity, layoutParams);
+			activity.runOnUiThread(task);
 			callbackContext.success("OK");
 
 		} catch (NullPointerException e) {
@@ -61,9 +74,13 @@ public class BrightnessPlugin extends CordovaPlugin {
 			System.out.println(e.getMessage());
 			callbackContext.error(e.getMessage());
 			return false;
+		} catch (JSONException e) {
+			System.out.println("JSONException exception");
+			System.out.println(e.getMessage());
+			callbackContext.error(e.getMessage());
+			return false;
 		}
 		System.out.println("All went fine.");
-		//callbackContext.success(filePath);
 		return true;
 	}
 
@@ -73,12 +90,10 @@ public class BrightnessPlugin extends CordovaPlugin {
 	 * @return
 	 */
 	private boolean getBrightness(JSONArray args, CallbackContext callbackContext) {
-		String filePath = null;
 		try {
 			Activity activity = cordova.getActivity();
 			WindowManager.LayoutParams layoutParams = activity.getWindow().getAttributes();
-			String value = args.getString(0);
-			Double brightness = layoutParams.screenBrightness;
+			Double brightness = (double) layoutParams.screenBrightness;
 			callbackContext.success(brightness.toString());
 
 		} catch (NullPointerException e) {

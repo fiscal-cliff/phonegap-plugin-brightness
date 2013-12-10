@@ -1,4 +1,4 @@
-/*
+cordova.define("cordova.plugin.Brightness.Brightness", function(require, exports, module) {/*
  * @author Evgeniy Lukovsky
  * */
 
@@ -12,10 +12,11 @@
 		return cordova.exec(successCallback, errorCallback, "Brightness", "getBrightness", []);
 	};
 
-	Brightness.prototype.setBrightness = function( successCallback, errorCallback) 
+	Brightness.prototype.setBrightness = function(value, successCallback, errorCallback) 
 	{
-		return cordova.exec(successCallback, errorCallback, "Brightness", "setBrightness", []);
+		return cordova.exec(successCallback, errorCallback, "Brightness", "setBrightness", [value]);
 	};
 
 	module.exports= new Brightness();
 
+});
