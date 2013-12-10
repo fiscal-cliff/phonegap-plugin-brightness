@@ -1,10 +1,7 @@
-
-
+#import <UIKit/UIScreen.h>
 #import "Brightness.h"
-#import "UIScreen.h"
 
 @implementation Brightness : CDVPlugin
-
 
 - (void)getBrightness:(CDVInvokedUrlCommand *)command
 {
@@ -19,10 +16,10 @@
 - (void)setBrightness:(CDVInvokedUrlCommand *)command
 {
     CDVPluginResult * pluginResult = nil;
-    NSString *value = [arguments objectAtIndex:0];
+    NSString *value = [command.arguments objectAtIndex:0];
     float brightness = [value floatValue];
     [UIScreen mainScreen].brightness = brightness;
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"OK";
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"OK"];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
