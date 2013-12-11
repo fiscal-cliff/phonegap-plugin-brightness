@@ -1,3 +1,8 @@
+/**
+ * @author Evgeniy Lukovsky
+ *
+ */
+
 
 #import <Cordova/CDV.h>
 

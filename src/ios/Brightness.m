@@ -1,3 +1,8 @@
+/**
+ * @author Evgeniy Lukovsky
+ *
+ */
+
 #import <UIKit/UIScreen.h>
 #import "Brightness.h"
 
