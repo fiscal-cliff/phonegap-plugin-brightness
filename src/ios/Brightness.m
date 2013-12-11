@@ -10,7 +10,6 @@
     NSString *result = [NSString stringWithFormat:@"%f", brightness];
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:result];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-    [UIScreen mainScreen].brightness = 0;
 }
 
 - (void)setBrightness:(CDVInvokedUrlCommand *)command
