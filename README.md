@@ -14,8 +14,9 @@ You may use phonegap CLI as follows:
 </pre>
 
 Using
-The code bellow can be placed at the script tag.
 ====
+The code bellow can be placed into script tag.
+
 ```javascript
 		document.addEventListener('deviceready', onDeviceReady);
 		function onDeviceReady() {
