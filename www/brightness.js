@@ -1,4 +1,4 @@
-cordova.define("cordova.plugin.Brightness.Brightness", function(require, exports, module) {/*
+ /*
  * @author Evgeniy Lukovsky
  * */
 
@@ -19,4 +19,3 @@ cordova.define("cordova.plugin.Brightness.Brightness", function(require, exports
 
 	module.exports= new Brightness();
 
-});
