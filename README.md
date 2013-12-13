@@ -15,7 +15,7 @@ You may use phonegap CLI as follows:
 
 Using
 ====
-The code bellow can be placed into script tag.
+The code below can be placed into script tag.
 
 ```javascript
 		document.addEventListener('deviceready', onDeviceReady);
