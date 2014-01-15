@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+		xmlns:android="http://schemas.android.com/apk/res/android" 
            id="cordova.plugin.Brightness"
       version="0.1.0">
     <name>Brightness</name>
@@ -9,9 +10,8 @@
         <clobbers target="Brightness" />
     </js-module>
     
-    	<info>
-	This plugin gives you path of file, that's opened with your allpication
-	You should add type handling manually to the android manifest or info.plist
+	<info>
+		This plugin gives you the ability to get and set the brightness of a device
 	</info>
 
     <!-- android -->
