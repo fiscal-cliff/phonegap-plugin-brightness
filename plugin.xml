@@ -6,12 +6,20 @@
       version="0.1.0">
     <name>Brightness</name>
 
+	<author>Evgeniy Lukovsky</author>
+	
+	<license>MIT</license>
+	
+	<description>
+		This plugin gives you the ability to get and set the screen brightness
+	</description>
+	
     <js-module src="www/brightness.js" name="Brightness">
         <clobbers target="Brightness" />
     </js-module>
     
 	<info>
-		This plugin gives you the ability to get and set the brightness of a device
+		This plugin gives you the ability to get and set the screen brightness
 	</info>
 
     <!-- android -->
