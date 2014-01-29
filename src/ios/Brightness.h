@@ -10,5 +10,6 @@
 
 - (void)getBrightness:(CDVInvokedUrlCommand*)command;
 - (void)setBrightness:(CDVInvokedUrlCommand*)command;
+- (void)setKeepScreenOn:(CDVInvokedUrlCommand*)command;
 
 @end

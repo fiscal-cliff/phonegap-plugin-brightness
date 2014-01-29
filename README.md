@@ -1,7 +1,8 @@
 phonegap-plugin-brightness
 ==========================
 
-A phonegap 3.x plugin for brightness control within android and ios
+A phonegap 3.x plugin for brightness control within android and ios.
+Also recently I have added the function for keep screen on.
 
 Installing
 ======
@@ -34,4 +35,13 @@ The code below can be placed into script tag.
 		function fail(status) {
 			alert('Error: ' + status);
 		}
+```
+
+You may also prevent a sleep (or keep screen on).
+
+```javascript
+		// prevents sleep
+		brightness.setKeepScreenOn(true);
+		// returns normal behavior
+		pluginService.brightness.setKeepScreenOn(false);
 ```

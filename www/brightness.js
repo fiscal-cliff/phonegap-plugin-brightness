@@ -17,5 +17,10 @@
 		return cordova.exec(successCallback, errorCallback, "Brightness", "setBrightness", [value]);
 	};
 
+	Brightness.prototype.setKeepScreenOn = function(value, successCallback, errorCallback) 
+	{
+		return cordova.exec(successCallback, errorCallback, "Brightness", "setKeepScreenOn", [value]);
+	};
+
 	module.exports= new Brightness();
 

@@ -16,7 +16,8 @@ import android.view.WindowManager;
 public class BrightnessPlugin extends CordovaPlugin {
 	public enum Action{
 		setBrightness,
-		getBrightness
+		getBrightness,
+		setKeepScreenOn
 	}
 	
 	private class SetTask implements Runnable{
@@ -47,6 +48,9 @@ public class BrightnessPlugin extends CordovaPlugin {
 			break;
 		case getBrightness: result = true;
 			getBrightness(args, callbackContext);
+			break;
+		case setKeepScreenOn: result = true;
+			setKeepScreenOn(args, callbackContext);
 			break;
 		}
 		return result;
@@ -105,5 +109,34 @@ public class BrightnessPlugin extends CordovaPlugin {
 		System.out.println("All went fine.");
 		return true;
 	}
+	/**
+	 * @param args
+	 * @param callbackContext
+	 * @return
+	 */
+	private boolean setKeepScreenOn(JSONArray args, CallbackContext callbackContext){
+		try {
+			boolean value = args.getBoolean(0);
+			Activity activity = cordova.getActivity();
+			if(value){
+				activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+			} else {
+				activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+			}
+			callbackContext.success("OK");
 
+		} catch (NullPointerException e) {
+			System.out.println("Null pointer exception");
+			System.out.println(e.getMessage());
+			callbackContext.error(e.getMessage());
+			return false;
+		} catch (JSONException e) {
+			System.out.println("JSONException");
+			System.out.println(e.getMessage());
+			callbackContext.error(e.getMessage());
+			return false;
+		}
+		System.out.println("All went fine.");
+		return true;
+	}
 }

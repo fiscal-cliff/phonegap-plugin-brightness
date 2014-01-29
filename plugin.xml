@@ -19,7 +19,7 @@
     </js-module>
     
 	<info>
-		This plugin gives you the ability to get and set the screen brightness
+		This plugin gives you the ability to get and set the screen brightness. Also recently I have added the function for keep screen on.
 	</info>
 
     <!-- android -->
