@@ -136,7 +136,7 @@ public class BrightnessPlugin extends CordovaPlugin {
 		try {
 			boolean value = args.getBoolean(0);
 			Activity activity = cordova.getActivity();
-			SetTask task = new KeepOnTask();
+			KeepOnTask task = new KeepOnTask();
                         task.setParams(activity.getWindow(), value);
                         activity.runOnUiThread(task);
 			callbackContext.success("OK");
