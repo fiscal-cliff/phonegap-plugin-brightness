@@ -8,6 +8,7 @@ import org.json.JSONException;
 import android.app.Activity;
 import android.view.WindowManager.LayoutParams;
 import android.view.WindowManager;
+import android.view.Window;
 
 /**
  * @author Evgeniy Lukovsky
@@ -35,7 +36,7 @@ public class BrightnessPlugin extends CordovaPlugin {
 
         private class KeepOnTask implements Runnable{
                 private Window win = null;
-                private boolean state = null;
+                private boolean state = false;
                 @Override
                 public void run() {
                         if(state){
