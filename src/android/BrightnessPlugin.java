@@ -33,6 +33,23 @@ public class BrightnessPlugin extends CordovaPlugin {
 		}
 	}
 
+        private class KeepOnTask implements Runnable{
+                private Window win = null;
+                private boolean state = null;
+                @Override
+                public void run() {
+                        if(state){
+                                win.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                        } else {
+                                win.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                        }
+                }
+                public void setParams(Window win, boolean state){
+                        this.win = win;
+                        this.state = state;
+                }
+        }
+
 
 	/* (non-Javadoc)
 	 * @see org.apache.cordova.CordovaPlugin#execute(java.lang.String, org.json.JSONArray, org.apache.cordova.CallbackContext)
@@ -118,11 +135,9 @@ public class BrightnessPlugin extends CordovaPlugin {
 		try {
 			boolean value = args.getBoolean(0);
 			Activity activity = cordova.getActivity();
-			if(value){
-				activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-			} else {
-				activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-			}
+			SetTask task = new KeepOnTask();
+                        task.setParams(activity.getWindow(), value);
+                        activity.runOnUiThread(task);
 			callbackContext.success("OK");
 
 		} catch (NullPointerException e) {
