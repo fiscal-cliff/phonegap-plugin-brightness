@@ -15,7 +15,7 @@
 	</description>
 	
     <js-module src="www/brightness.js" name="Brightness">
-        <clobbers target="Brightness" />
+        <clobbers target="cordova.plugins.brightness" />
     </js-module>
     
 	<info>
