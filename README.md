@@ -24,9 +24,11 @@ The code below can be placed into script tag.
 			window.brightness = cordova.require("cordova.plugin.Brightness.Brightness");
 		}
 		function setBrightness(value) {
+			// value should be float in range from 0 to 1.
 			brightness.setBrightness(value, win, fail);
 		}
 		function getBrightness() {
+			// win([-1,0-1]) float 0-1 is a brightness level, -1 represents a system default
 			brightness.getBrightness( win, fail);
 		}
 		function win(status) {
