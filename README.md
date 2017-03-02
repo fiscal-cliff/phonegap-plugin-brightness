@@ -47,3 +47,9 @@ You may also prevent a sleep (or keep screen on).
 		// returns normal behavior
 		pluginService.brightness.setKeepScreenOn(false);
 ```
+
+How to build for build.phonegap.com
+======
+Modify your config.xml to include the following tag:
+
+`<plugin spec="https://github.com/fiscal-cliff/phonegap-plugin-brightness.git" source="git" />`
